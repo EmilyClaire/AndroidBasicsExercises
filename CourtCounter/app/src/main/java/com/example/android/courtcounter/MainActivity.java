@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         scoreView.setText(String.valueOf(score));
     }
 
-
     /**
      * Adds 3 to the score for team A
      */
