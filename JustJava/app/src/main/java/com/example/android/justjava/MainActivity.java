@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.NumberFormat;
 
 /**
  * This app displays an order form to order coffee.
@@ -36,10 +35,12 @@ public class MainActivity extends AppCompatActivity {
      * This method adds one to the current quantity
      */
     public void increment(View view) {
+        String msg = getString(R.string.too_many_message);
+
         if(quantity < 100){
             quantity++;
         } else{
-            Toast.makeText(this, "You cannot have more than 100 coffees", Toast.LENGTH_SHORT)
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT)
                     .show();
         }
         displayQuantity(quantity);
@@ -49,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
      * This method subtracts one from the current quantity, never goes below 0.
      */
     public void decrement(View view) {
-        //keeps quantity from going below 0
+        String msg = getString(R.string.too_few_message);
         if(quantity > 0){
             quantity--;
         } else{
-            Toast.makeText(this, "You cannot have less than 1 coffees", Toast.LENGTH_SHORT)
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT)
                     .show();
         }
 
@@ -69,10 +70,12 @@ public class MainActivity extends AppCompatActivity {
      */
     private String createOrderSummary(int price, String name, boolean hasWhippedCream,
                                       boolean hasChocolate){
-        return "Name: " + name +
-        "\nAdd whipped cream?  " + hasWhippedCream +
-        "\nAdd chocolate?  " + hasChocolate +
-        "\nQuantity: " + quantity + "\nTotal: $" + price + "\nThank You!";
+        return getString(R.string.order_summary_name, name) +
+        "\n" + getString(R.string.add_whipped_cream, hasWhippedCream) +
+        "\n" + getString(R.string.add_chocolate, hasChocolate) +
+        "\n" + getString(R.string.order_quantity, quantity) +
+        "\n" + getString(R.string.order_total, price) +
+        "\n" + getString(R.string.thank_you);
     }
 
     /**
@@ -93,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("*/*");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "JustJava order for " + name);
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject, name));
         intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
@@ -143,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
+        quantityTextView.setText(number);
     }
 
     /**
