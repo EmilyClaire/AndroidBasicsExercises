@@ -18,9 +18,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="@string/name_header"
-                android:textAllCaps="true"
-                android:textSize="16sp" />
+                android:text="Name:"
+                style="@style/HeaderTextStyle"/>
 
             <EditText
                 android:id="@+id/name_text_input"
@@ -37,8 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/toppings"
-            android:textAllCaps="true"
-            android:textSize="16sp" />
+            style="@style/HeaderTextStyle"/>
 
         <CheckBox
             android:id="@+id/whipped_check_box"
@@ -63,8 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/quantity_text"
-            android:textAllCaps="true"
-            android:textSize="16sp" />
+            style="@style/HeaderTextStyle"/>
 
         <LinearLayout
             android:layout_width="match_parent"
